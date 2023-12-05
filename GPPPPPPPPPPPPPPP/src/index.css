@@ -1,0 +1,20 @@
+:root{
+  --bg-color: rgb(1, 83, 103);
+  --font-color : black;
+}
+body{
+  background-color: var(--bg-color);
+  color: var(--font-color);
+
+}
+a{
+  color: var(--font-color);
+  text-decoration: none;
+}
+.input-form{
+  border: solid 1px rgb(6, 6, 24);
+  color: black;
+}
+.label{
+  color: #fff;
+}
