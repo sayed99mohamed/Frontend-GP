@@ -1,194 +1,3 @@
-// import axios from 'axios'
-// import React, { useState } from 'react'
-// import { useNavigate } from 'react-router-dom'
-
-
-// let navigate = useNavigate
-
-// export default function Register() {
-
-//   let [errorResFromApi , setErrorResFromApi] = useState('') //email is already exist
-
-//   let [isLoading , setIsLoading] = useState('false')
-
-//   let [user , setUser] = useState({
-//     fname: '',
-//     lname: '',
-//     age: 0,
-//     email: '',
-//     password: '',
-
-//   })
-  
-
-
-
-
-
-//   async function sendRegisterDataToApi() {
-//     try {
-//       let response = await axios.post('https://localhost:7134/api/Auth/register', user);
-
-//       if (response.status === 200) {
-//         navigate('/login');
-//       } else {
-//         console.log('Unexpected status code:', response.status);
-//       }
-//     } catch (error) {
-//       if (error.response && error.response.status === 400) {
-//         // Handle 400 Bad Request
-//         console.log('Bad Request:', error.response.data);
-//         setErrorResFromApi(error.response.data); // Set error message from the API
-//       } else {
-//         // Handle other errors
-//         console.error('An error occurred:', error.message);
-//       }
-//     } finally {
-//       setIsLoading(false); // Set loading to false regardless of the outcome
-//     }
-//   }
-
-//   function submitForm(e){
-//     e.preventDefault()
-//     setIsLoading(true)
-//     sendRegisterDataToApi()
-//   }
-
-//   function getUserData(e){
-//     let myUser = {...user}
-//     myUser[e.target.name] = e.target.value
-//     setUser(myUser)
-//   }
-  
-//   return <> 
-
-
-
-//     {errorResFromApi.length > 0 ? <div className='alert alert-danger my-2'>{errorResFromApi}</div>:''}
-
-//     <form onSubmit={submitForm} className='my-5'>
-//       <label htmlFor="fname" className='label'>First Name :</label>
-//       <input onChange={getUserData} className='form-control input-form my-2' type="text" name='fname' />
-
-//       <label htmlFor="lname" className='label'>Last Name :</label>
-//       <input onChange={getUserData} className='form-control input-form my-2' type="text" name='lname' />
-
-//       <label htmlFor="age" className='label'>Age :</label>
-//       <input onChange={getUserData} className='form-control input-form my-2' type="text" name='age' />
-
-//       <label htmlFor="email" className='label'>Email :</label>
-//       <input onChange={getUserData} className='form-control input-form my-2' type="text" name='email' />
-
-//       <label htmlFor="password" className='label'>Password :</label>
-//       <input onChange={getUserData} className='form-control input-form my-2' type="password" name='password'/>
-      
-//       {/* <label htmlFor="confirm_password" className='label'>Confirm Password :</label>
-//       <input onChange={getUserData} className='form-control input-form my-2' type="password" name='confirm_password' id=''/> */}
-      
-//       <button type = 'submit' className=' px-4 btn btn-outline-info my-2'>
-//         {isLoading === true? <i className='fas fa-spinner fa-spin'></i> : 'Register'}
-//       </button>
-
-
-//     </form>
-
-//   </>
-// }
-
-// import axios from 'axios';
-// import React, { useState } from 'react';
-// import { useNavigate } from 'react-router-dom';
-// export default function Register() {
-//   let navigate = useNavigate();
-
-//   let [errorResFromApi, setErrorResFromApi] = useState('');
-//   let [isLoading, setIsLoading] = useState(false);
-
-//   let [user, setUser] = useState({
-//     firstName: '',
-//     lastName: '',
-//     username: '',
-//     phoneNumber: '',
-//     birthdate: '',
-//     email: '',
-//     password: '',
-//   });
-
-//   async function sendRegisterDataToApi() {
-//     try {
-//       let response = await axios.post('https://localhost:7134/api/Auth/register', user);
-
-//       if (response.status === 200) {
-//         navigate('/login');
-//       } else {
-//         console.log('Unexpected status code:', response.status);
-//       }
-//     } catch (error) {
-//       if (error.response) {
-//         if (error.response.status === 400 && error.response.data.includes('email')) {
-//           setErrorResFromApi('Email is already taken. Please choose a different one.');
-//         } else {
-//           console.error('An error occurred:', error.message);
-//           setErrorResFromApi('An error occurred. Please try again later.');
-//         }
-//       } else {
-//         console.error('An error occurred:', error.message);
-//         setErrorResFromApi('An error occurred. Please try again later.');
-//       }
-//     } finally {
-//       setIsLoading(false);
-//     }
-//   }
-
-//   function submitForm(e) {
-//     e.preventDefault();
-//     setIsLoading(true);
-//     sendRegisterDataToApi();
-//   }
-
-//   function getUserData(e) {
-//     let myUser = { ...user };
-//     myUser[e.target.name] = e.target.value;
-//     setUser(myUser);
-//   }
-
-//   return (
-//     <>
-//       {errorResFromApi.length > 0 && <div className='alert alert-danger my-2'>{errorResFromApi}</div>}
-
-//       <form onSubmit={submitForm} className='my-5'>
-//        <label htmlFor="firstName" className='label'>First Name :</label>
-//        <input onChange={getUserData} className='form-control input-form my-2' type="text" name='firstName' />
-
-//        <label htmlFor="lastName" className='label'>Last Name :</label>
-//        <input onChange={getUserData} className='form-control input-form my-2' type="text" name='lastName' />
-
-//        <label htmlFor="username" className='label'>User Name :</label>
-//        <input onChange={getUserData} className='form-control input-form my-2' type="text" name='username' />
-
-//        <label htmlFor="birthdate" className='label'>Birth Date :</label>
-//        <input onChange={getUserData} className='form-control input-form my-2' type="text" name='birthdate' />
-
-//        <label htmlFor="email" className='label'>Email :</label>
-//        <input onChange={getUserData} className='form-control input-form my-2' type="text" name='email' />
-
-//         <label htmlFor="password" className='label'>Password :</label>
-//         <input onChange={getUserData} className='form-control input-form my-2' type="password" name='password'/>
-     
-//         <button type='submit' className='px-4 btn btn-outline-info my-2'>
-//           {isLoading ? <i className='fas fa-spinner fa-spin'></i> : 'Register'}
-//         </button>
-//       </form>
-//     </>
-//   );
-// }
-
-
-
-
-
-
-
 import axios from 'axios';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -212,6 +21,7 @@ export default function Register() {
   async function sendRegisterDataToApi() {
     try {
       let response = await axios.post('https://localhost:7134/api/Auth/register', user);
+      
       if (response.status === 200) {
         navigate('/login');
       } else {
@@ -220,7 +30,9 @@ export default function Register() {
       }
     } catch (error) {
       if (error.response && error.response.status === 400) {
+        console.log(error.response.data.errors)
         console.log('Validation error:', error.response.data);
+        // alert(error.response.errors.phoneNumber)
         // hena mslan ana sayeb field mesh maleha (required data)
         //moshkelt syntax m3 syntax el database (syntax error)
         
@@ -236,6 +48,7 @@ export default function Register() {
   
           // You may choose to display a generic validation error message to the user
           setErrorResFromApi('One or more validation errors occurred. Please check your data.');
+          
         } else {
           // If no "model" array is present, display a generic error message
           setErrorResFromApi('An error occurred. Please check your registration data.');

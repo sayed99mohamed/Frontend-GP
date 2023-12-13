@@ -5,7 +5,6 @@ import { useNavigate } from 'react-router-dom'
 export default function Login({saveUserData}) {
   let navigate = useNavigate()
   let [errorResFromApi , setErrorResFromApi] = useState('')
-  // let [errorLogin , setErrorLogin] = useState([]) 
   let [isLoading , setIsLoading] = useState('false')
 
   let [user , setUser] = useState({
@@ -18,7 +17,10 @@ export default function Login({saveUserData}) {
   async function sendLoginDataToApi() {
     try {
       let response = await axios.post('https://localhost:7134/api/Auth/login', user);
-      console.log(response)
+      console.log(response.data.token)
+      localStorage.setItem('userToken',response.data.token)
+      saveUserData()
+
 
       if (response.status === 200) {
         navigate('/home');
